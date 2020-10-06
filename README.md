@@ -17,4 +17,4 @@ guide for using github desktop (https://www.youtube.com/watch?v=77W2JSL7-r8)
 4. run flutter pub get on android studio terminal (should get a pop up when you first open the project on android studio asking to install dependecies, this works as well) 
 5. compile the project onto your phone, should get a screen that looks like this on your phone 
 <img src="Tutorial-1.jpg"
-     width:50%; height:50% style="float: left; margin-right: 10px;" />
+     width:50%; height:50%; style="float: left; margin-right: 10px;" />
