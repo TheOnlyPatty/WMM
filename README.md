@@ -11,8 +11,8 @@ guide for using github desktop (https://www.youtube.com/watch?v=77W2JSL7-r8)
 
 # Flutter/Unity/Bluetooth demo setup (currently only usable on android) 
 
-* Clone the repository (either download the .zip file from github or clone using github desktop/git command line) 
-* Load WMM-master\arduino\BLE\BLE_server_multiconnect onto ESP32 
+* Clone the repository (either download the .zip file from github in browser or clone using github desktop/git command line) 
+* Load WMM-master\arduino\BLE\BLE_server_multiconnect\BLE_server_multiconnect.ino onto ESP32 
 * Open WMM-master\app\flutter-unity-view-widget-master\example on android studio
 * Run `<flutter pub get>` on android studio terminal (should get a pop up when you first open the project on android studio asking to install dependecies, this works as well) 
 * Compile the project onto your phone, should get a screen that looks like this
@@ -26,4 +26,4 @@ guide for using github desktop (https://www.youtube.com/watch?v=77W2JSL7-r8)
 * Tap the button with the raised hand, this should open the unity project 
 * <img src="Tutorial-4.jpg" width="225" height="475">
 * Press the "Press to start demo!" button at the bottom of the screen 
-* Should be working! 
+* Should be simulating the IMU's orientation! 
