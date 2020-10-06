@@ -16,7 +16,7 @@ guide for using github desktop (https://www.youtube.com/watch?v=77W2JSL7-r8)
 * Open WMM-master\app\flutter-unity-view-widget-master\example on android studio
 * Run `<flutter pub get>` on android studio terminal (should get a pop up when you first open the project on android studio asking to install dependecies, this works as well) 
 * Compile the project onto your phone, should get a screen that looks like this
-<img src="Tutorial-1.jpg" width="225" height="475">
+<img src="Tutorial-1.jpg" width="225" height="475"> <\img>
 * Select Bluetooth Setup
 * Tap on the search icon in bottom right corner
 <img src="Tutorial-2.jpg" width="225" height="475">
