@@ -14,7 +14,7 @@ guide for using github desktop (https://www.youtube.com/watch?v=77W2JSL7-r8)
 * Clone the repository (either download the .zip file from github in browser or clone using github desktop/git command line) 
 * Load WMM-master\arduino\BLE\BLE_server_multiconnect\BLE_server_multiconnect.ino onto ESP32 
 * Open WMM-master\app\flutter-unity-view-widget-master\example on android studio
-* Run `<flutter pub get>` on android studio terminal (should get a pop up when you first open the project on android studio asking to install dependecies, this works as well) 
+* Run `flutter pub get` on android studio terminal (should get a pop up when you first open the project on android studio asking to install dependecies, this works as well) 
 * Compile the project onto your phone, should get a screen that looks like this
 * <img src="Tutorial-1.jpg" width="225" height="475">
 * Select Bluetooth Setup
