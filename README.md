@@ -26,4 +26,4 @@ guide for using github desktop (https://www.youtube.com/watch?v=77W2JSL7-r8)
 * Tap the button with the raised hand, this should open the unity project 
 * <img src="Tutorial-4.jpg" width="225" height="475">
 * Press the "Press to start demo!" button at the bottom of the screen 
-* Should be simulating the IMU's orientation! 
+* Should be simulating the IMU's orientation! Thank you for coming to my Ted Talk 
