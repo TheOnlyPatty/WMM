@@ -376,10 +376,7 @@ class LoaderScreen extends StatelessWidget {
                 elevation: 10,
                 child: Column(
                   children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.only(top: 20),
-                      child: Text("Rotation speed:"),
-                    ),
+
                     RaisedButton(
                       onPressed: () async{
                         List<BluetoothService> services = await device.discoverServices();
@@ -392,7 +389,7 @@ class LoaderScreen extends StatelessWidget {
                           setOrientation(String.fromCharCodes(value));
                         });
                       },
-                      child: const Text('Press to record your ', style: TextStyle(fontSize: 20)),
+                      child: const Text('Press to start demo!', style: TextStyle(fontSize: 20)),
                     ),
 
 
