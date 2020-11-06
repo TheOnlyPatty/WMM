@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_unity_widget_example/db.dart';
 
 import 'screens/menu_screen.dart';
 import 'screens/api_screen.dart';
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
         '/simple': (context) => SimpleScreen(),
         '/api': (context) => ApiScreen(),
         '/ble': (context) => BLEScreen(),
+        '/db': (context) => DataBase(),
       },
     );
   }

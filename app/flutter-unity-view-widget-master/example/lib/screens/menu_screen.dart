@@ -26,6 +26,13 @@ class _MenuScreenState extends State<MenuScreen> {
       route: '/ble',
       title: 'Bluetooth Setup',
       enableAR: false,
+    ),
+
+    new _MenuListItem(
+      description: 'Database',
+      route: '/db',
+      title: 'Database',
+      enableAR: false,
     )
   ];
 

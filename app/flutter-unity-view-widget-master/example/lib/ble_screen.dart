@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_blue/flutter_blue.dart';
 import 'widgets.dart';
 import 'screens/menu_screen.dart';
+import 'package:flutter_unity_widget_example/database_helper.dart';
 
 
 class BLEScreen extends StatefulWidget {
@@ -383,10 +384,15 @@ class LoaderScreen extends StatelessWidget {
                         BluetoothService service = services[2];
                         var characteristics = service.characteristics;
                         BluetoothCharacteristic c = characteristics[0];
+                        String dbVar;
                         await c.setNotifyValue(true);
                         c.value.listen((value) {
                           print(String.fromCharCodes(value));
                           setOrientation(String.fromCharCodes(value));
+                          dbVar = String.fromCharCodes(value);
+                          DatabaseHelper.instance.insert({
+                            DatabaseHelper.columnName : '$dbVar'
+                          });
                         });
                       },
                       child: const Text('Press to start demo!', style: TextStyle(fontSize: 20)),
