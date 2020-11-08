@@ -51,9 +51,10 @@ class DatabaseHelper{
     return await db.insert(_tableName, row);
   }
 
-  Future<List<Map<String, dynamic>>> queryAll() async {
+  Future<List<Map<String, dynamic>>> queryAll(int id) async {
     Database db = await instance.database;
-    return await db.query(_tableName);
+    return await db.query(_tableName, columns: ['quaterion'],where: '$columnID = ?', whereArgs: [id]);
+    //return await db.query(_tableName);
   }
 
   Future update(Map<String, dynamic> row) async {

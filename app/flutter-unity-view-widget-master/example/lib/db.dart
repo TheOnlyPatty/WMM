@@ -33,8 +33,12 @@ class _DataBaseEx extends State<DataBase> {
             // }, child: Text('insert'), color: Colors.grey[400]),
             FlatButton(onPressed: () async{ // query function
 
-              List<Map<String, dynamic>> queryRows = await DatabaseHelper.instance.queryAll();
-              print(queryRows);
+              List<Map<String, dynamic>> queryRows;
+              List<Map<String, dynamic>> count = await DatabaseHelper.instance.getCount();
+              for (int i = 1; i < Sqflite.firstIntValue(count); i ++) {
+                queryRows = await DatabaseHelper.instance.queryAll(i);
+                print(queryRows[0]['quaterion']);
+              }
 
             }, child: Text('query'), color: Colors.green[400]),
             FlatButton(onPressed: () async{ // delete function
@@ -58,4 +62,15 @@ class _DataBaseEx extends State<DataBase> {
       ),
     );
   }
+}
+
+void test() {
+List<Map<String,dynamic>> arrayTest = [{'id':'1','name':'test1'},{'id':'2','name':'test2'},{'id':'3','name':'test3'},{'id':'4','name':'test5'}];
+
+  List list=[];
+  for(var array in arrayTest){
+    list.add(array['name']);
+
+  }
+  print(list);
 }

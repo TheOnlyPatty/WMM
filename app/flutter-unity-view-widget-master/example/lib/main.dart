@@ -6,6 +6,7 @@ import 'screens/api_screen.dart';
 import 'screens/loader_screen.dart';
 import 'screens/simple_screen.dart';
 import 'ble_screen.dart';
+import 'unity_screen.dart';
 
 
 void main() {
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
         '/api': (context) => ApiScreen(),
         '/ble': (context) => BLEScreen(),
         '/db': (context) => DataBase(),
+        '/un': (context) => UnityScreen(),
       },
     );
   }
