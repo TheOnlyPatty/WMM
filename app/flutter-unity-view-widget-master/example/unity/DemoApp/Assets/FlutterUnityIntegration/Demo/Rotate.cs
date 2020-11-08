@@ -10,11 +10,17 @@ using UnityEngine.EventSystems;
 
 public class Rotate : MonoBehaviour, IEventSystemHandler
 {
-    public float w;
-    public float x;
-    public float y;
-    public float z;
+    public float w1 = 1;
+    public float x1 = 0;
+    public float y1 = 0;
+    public float z1 = 0;
+    public float w2 = 1;
+    public float x2 = 0;
+    public float y2 = 0;
+    public float z2 = 0;
     // Start is called before the first frame update
+
+    public h other;
 
     [SerializeField]
     Quaternion quat;
@@ -27,7 +33,7 @@ public class Rotate : MonoBehaviour, IEventSystemHandler
     // Update is called once per frame
     void Update()
     {
-        transform.rotation = quat;
+        //transform.rotation = quat;
     }
 
     private static Quaternion Change(float w, float x, float y, float z)
@@ -43,10 +49,16 @@ public class Rotate : MonoBehaviour, IEventSystemHandler
 
         message = message.Trim(';');
         string[] a = message.Split(',');
-        w = float.Parse(a[0]);
-        x = float.Parse(a[1]);
-        y = float.Parse(a[2]);
-        z = float.Parse(a[3]);
-        quat = Change(w, x, y, z);
+        w1 = float.Parse(a[0]);
+        x1 = float.Parse(a[1]);
+        y1 = float.Parse(a[2]);
+        z1 = float.Parse(a[3]);
+        w2 = float.Parse(a[4]);
+        x2 = float.Parse(a[5]);
+        y2 = float.Parse(a[6]);
+        z2 = float.Parse(a[7]);
+
+        transform.rotation = Change(w1, x1, y1, z1);
+        other.DoSomething(w2, x2, y2, z2);
     }
 }

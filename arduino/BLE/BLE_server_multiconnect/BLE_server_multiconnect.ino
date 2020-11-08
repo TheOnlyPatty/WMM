@@ -35,21 +35,35 @@
 
 // Check I2C device address and correct line below (by default address is 0x29 or 0x28)
 //                                   id, address
-Adafruit_BNO055 bno = Adafruit_BNO055(55, 0x28);
+Adafruit_BNO055 bno1 = Adafruit_BNO055(1, 0x28);
+Adafruit_BNO055 bno2 = Adafruit_BNO055(2, 0x29);
 
 void displaySensorDetails(void)
 {
-  sensor_t sensor;
-  bno.getSensor(&sensor);
+  sensor_t sensor1;
+  bno1.getSensor(&sensor1);
   Serial.println("------------------------------------");
-  Serial.print  ("Sensor:       "); Serial.println(sensor.name);
-  Serial.print  ("Driver Ver:   "); Serial.println(sensor.version);
-  Serial.print  ("Unique ID:    "); Serial.println(sensor.sensor_id);
-  Serial.print  ("Max Value:    "); Serial.print(sensor.max_value); Serial.println(" xxx");
-  Serial.print  ("Min Value:    "); Serial.print(sensor.min_value); Serial.println(" xxx");
-  Serial.print  ("Resolution:   "); Serial.print(sensor.resolution); Serial.println(" xxx");
+  Serial.print  ("Sensor:       "); Serial.println(sensor1.name);
+  Serial.print  ("Driver Ver:   "); Serial.println(sensor1.version);
+  Serial.print  ("Unique ID:    "); Serial.println(sensor1.sensor_id);
+  Serial.print  ("Max Value:    "); Serial.print(sensor1.max_value); Serial.println(" xxx");
+  Serial.print  ("Min Value:    "); Serial.print(sensor1.min_value); Serial.println(" xxx");
+  Serial.print  ("Resolution:   "); Serial.print(sensor1.resolution); Serial.println(" xxx");
   Serial.println("------------------------------------");
   Serial.println("");
+
+  sensor_t sensor2;
+  bno2.getSensor(&sensor2);
+  Serial.println("------------------------------------");
+  Serial.print  ("Sensor:       "); Serial.println(sensor2.name);
+  Serial.print  ("Driver Ver:   "); Serial.println(sensor2.version);
+  Serial.print  ("Unique ID:    "); Serial.println(sensor2.sensor_id);
+  Serial.print  ("Max Value:    "); Serial.print(sensor2.max_value); Serial.println(" xxx");
+  Serial.print  ("Min Value:    "); Serial.print(sensor2.min_value); Serial.println(" xxx");
+  Serial.print  ("Resolution:   "); Serial.print(sensor2.resolution); Serial.println(" xxx");
+  Serial.println("------------------------------------");
+  Serial.println("");
+  
   delay(500);
 }
 
@@ -81,8 +95,17 @@ class MyServerCallbacks: public BLEServerCallbacks {
 
 void setup() {
 
+  Serial.begin(9600);
+
+
   /* Initialise the sensor */
-  if(!bno.begin())
+  if(!bno1.begin())
+  {
+    /* There was a problem detecting the BNO055 ... check your connections */
+    Serial.print("Ooops, no BNO055 detected ... Check your wiring or I2C ADDR!");
+    while(1);
+  }
+  if(!bno2.begin())
   {
     /* There was a problem detecting the BNO055 ... check your connections */
     Serial.print("Ooops, no BNO055 detected ... Check your wiring or I2C ADDR!");
@@ -92,12 +115,11 @@ void setup() {
   delay(1000);
 
   /* Use external crystal for better accuracy */
-  bno.setExtCrystalUse(true);
+  bno1.setExtCrystalUse(true);
+  bno2.setExtCrystalUse(true);
    
   /* Display some basic information on this sensor */
   displaySensorDetails();
-  
-  Serial.begin(9600);
 
   // Create the BLE Device
   BLEDevice::init("ESP32");
@@ -138,15 +160,19 @@ void loop() {
     // notify changed value
     
     if (deviceConnected) {
-        sensors_event_t event;
-        bno.getEvent(&event);  
-        imu::Quaternion quat = bno.getQuat();
       
-        //uint8_t sys, gyro, accel, mag = 0;
-        //bno.getCalibration(&sys, &gyro, &accel, &mag);
+        sensors_event_t event1;
+        sensors_event_t event2;
+        bno1.getEvent(&event1);  
+        imu::Quaternion quat1 = bno1.getQuat();
+
+        bno2.getEvent(&event2);
+        imu::Quaternion quat2 = bno2.getQuat();
+
         String result = ""; 
-      
-        result = (String)quat.w() + "," + (String)quat.x() + "," + (String)quat.y() + "," + (String)quat.z() + ";" ;
+
+        result = (String)quat1.w() + "," + (String)quat1.x() + "," + (String)quat1.y() + "," + (String)quat1.z() + "," + 
+           (String)quat2.w() + "," + (String)quat2.x() + "," + (String)quat2.y() + "," + (String)quat2.z() + ";" ;
         Serial.println(result);
         std::ostringstream os;
         os << result.c_str();
@@ -155,6 +181,7 @@ void loop() {
         pCharacteristic->notify();
         value++;
         delay(33); // bluetooth stack will go into congestion, if too many packets are sent, in 6 hours test i was able to go as low as 3ms
+        
     }
     // disconnecting
     if (!deviceConnected && oldDeviceConnected) {
