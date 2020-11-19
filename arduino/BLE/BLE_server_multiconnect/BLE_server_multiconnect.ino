@@ -180,7 +180,7 @@ void loop() {
         pCharacteristic->setValue(os.str());
         pCharacteristic->notify();
         value++;
-        delay(33); // bluetooth stack will go into congestion, if too many packets are sent, in 6 hours test i was able to go as low as 3ms
+        delay(10); // bluetooth stack will go into congestion, if too many packets are sent, in 6 hours test i was able to go as low as 3ms
         
     }
     // disconnecting

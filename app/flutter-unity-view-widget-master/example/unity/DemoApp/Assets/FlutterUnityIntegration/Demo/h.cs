@@ -26,7 +26,14 @@ public class h : MonoBehaviour
 
     public void DoSomething(float w, float x, float y, float z)
     {
-        transform.rotation = Change(w, x, y, z);
+        try
+        {
+            transform.rotation = Change(w, x, y, z);
+        }
+        catch (System.Exception)
+        {
+            throw;
+        }
     }
     // Update is called once per frame
     //void Update()

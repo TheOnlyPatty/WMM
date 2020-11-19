@@ -46,19 +46,25 @@ public class Rotate : MonoBehaviour, IEventSystemHandler
 
     public void SetOrientation(string message)
     {
+        try
+        {
+            message = message.Trim(';');
+            string[] a = message.Split(',');
+            w1 = float.Parse(a[0]);
+            x1 = float.Parse(a[1]);
+            y1 = float.Parse(a[2]);
+            z1 = float.Parse(a[3]);
+            w2 = float.Parse(a[4]);
+            x2 = float.Parse(a[5]);
+            y2 = float.Parse(a[6]);
+            z2 = float.Parse(a[7]);
 
-        message = message.Trim(';');
-        string[] a = message.Split(',');
-        w1 = float.Parse(a[0]);
-        x1 = float.Parse(a[1]);
-        y1 = float.Parse(a[2]);
-        z1 = float.Parse(a[3]);
-        w2 = float.Parse(a[4]);
-        x2 = float.Parse(a[5]);
-        y2 = float.Parse(a[6]);
-        z2 = float.Parse(a[7]);
-
-        transform.rotation = Change(w1, x1, y1, z1);
-        other.DoSomething(w2, x2, y2, z2);
+            transform.rotation = Change(w1, x1, y1, z1);
+            other.DoSomething(w2, x2, y2, z2);
+        }
+        catch (System.Exception)
+        {
+            throw;
+        }
     }
 }
