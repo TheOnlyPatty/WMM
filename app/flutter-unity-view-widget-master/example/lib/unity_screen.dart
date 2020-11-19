@@ -63,10 +63,11 @@ class UnityScreen extends StatelessWidget {
                         for (int i = 1; i < Sqflite.firstIntValue(count); i ++) {
                           queryRows = await DatabaseHelper.instance.queryAll(i);
                           value = queryRows[0]['quaterion'];
-                          print(value);
+                          print(i);
+                          await Future.delayed(const Duration(milliseconds: 30));
                           setOrientation(value);
                         }
-                       
+
                       },
                       child: const Text('Press to start demo!', style: TextStyle(fontSize: 20)),
                     ),
