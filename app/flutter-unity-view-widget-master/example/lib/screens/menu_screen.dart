@@ -15,14 +15,7 @@ class _MenuScreenState extends State<MenuScreen> {
   List<_MenuListItem> menus = [
 
     new _MenuListItem(
-      description: 'Unity load and unload unity demo',
-      route: '/loader',
-      title: 'Safe mode Demo',
-      enableAR: false,
-    ),
-
-    new _MenuListItem(
-      description: 'Set up BlueTooth',
+      description: 'Set up Bluetooth',
       route: '/ble',
       title: 'Bluetooth Setup',
       enableAR: false,
@@ -36,9 +29,9 @@ class _MenuScreenState extends State<MenuScreen> {
     ),
 
     new _MenuListItem(
-      description: 'Unity',
+      description: 'Unity 3D Model of Past Data',
       route: '/un',
-      title: 'Unity',
+      title: '3D Model',
       enableAR: false,
     )
   ];
