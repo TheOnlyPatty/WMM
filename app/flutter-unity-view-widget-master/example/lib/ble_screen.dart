@@ -352,7 +352,7 @@ class LoaderScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Safe Mode Screen'),
+        title: Text('Live 3D Model'),
 
       ),
       floatingActionButton: FloatingActionButton(

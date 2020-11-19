@@ -28,7 +28,7 @@ class UnityScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Safe Mode Screen'),
+        title: Text('Past Data 3D Model'),
 
       ),
       body: Card(
@@ -63,15 +63,47 @@ class UnityScreen extends StatelessWidget {
                         for (int i = 1; i < Sqflite.firstIntValue(count); i ++) {
                           queryRows = await DatabaseHelper.instance.queryAll(i);
                           value = queryRows[0]['quaterion'];
-                          print(value);
+                          print(i);
+                          await Future.delayed(const Duration(milliseconds: 30));
                           setOrientation(value);
                         }
-                       
+
                       },
                       child: const Text('Press to start demo!', style: TextStyle(fontSize: 20)),
                     ),
-
-
+                  ],
+                ),
+              ),
+            ),
+            Positioned(
+              top: 20,
+              left: 20,
+              right: 175,
+              child: Card(
+                elevation: 10,
+                child: Column(
+                  children: <Widget>[
+                    Text(
+                      "Pitch: \n" + "420",
+                      textAlign: TextAlign.center,
+                    )
+                  ],
+                ),
+              ),
+            ),
+            Positioned(
+              top: 20,
+              left: 175,
+              right: 20,
+              height: 40,
+              child: Card(
+                elevation: 10,
+                child: Column(
+                  children: <Widget>[
+                    Text(
+                      "Yaw: \n" + "1337",
+                      textAlign: TextAlign.center,
+                    )
                   ],
                 ),
               ),
