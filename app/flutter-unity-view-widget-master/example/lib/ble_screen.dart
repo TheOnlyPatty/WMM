@@ -343,7 +343,7 @@ class LoaderScreen extends StatelessWidget {
   GlobalKey<ScaffoldState>();
   UnityWidgetController _unityWidgetController;
   double _sliderValue = 0.0;
-  int x = 0;
+  bool record = false;
 
 
 
@@ -354,6 +354,13 @@ class LoaderScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Safe Mode Screen'),
 
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          record = false;
+        },
+        child: Icon(Icons.stop),
+        backgroundColor: Colors.red,
       ),
       body: Card(
         margin: const EdgeInsets.all(8),
@@ -380,10 +387,13 @@ class LoaderScreen extends StatelessWidget {
 
                     RaisedButton(
                       onPressed: () async{
+                        record = true;
+
                         List<BluetoothService> services = await device.discoverServices();
                         BluetoothService service = services[2];
                         var characteristics = service.characteristics;
                         BluetoothCharacteristic c = characteristics[0];
+                        if(record){await c.write([0x66]);}
                         String dbVar;
                         await c.setNotifyValue(true);
                         c.value.listen((value) {
@@ -393,6 +403,10 @@ class LoaderScreen extends StatelessWidget {
                           DatabaseHelper.instance.insert({
                             DatabaseHelper.columnName : '$dbVar'
                           });
+                          if(record == false){
+                            c.write([0x73]);
+
+                          }
                         });
                       },
                       child: const Text('Press to start demo!', style: TextStyle(fontSize: 20)),

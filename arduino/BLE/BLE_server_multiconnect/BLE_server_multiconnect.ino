@@ -72,6 +72,7 @@ BLECharacteristic* pCharacteristic = NULL;
 bool deviceConnected = false;
 bool oldDeviceConnected = false;
 uint32_t value = 0;
+bool start = false;
 
 // See the following for generating UUIDs:
 // https://www.uuidgenerator.net/
@@ -84,10 +85,27 @@ class MyServerCallbacks: public BLEServerCallbacks {
     void onConnect(BLEServer* pServer) {
       deviceConnected = true;
       BLEDevice::startAdvertising();
-    };
+    }
 
     void onDisconnect(BLEServer* pServer) {
       deviceConnected = false;
+    }
+    
+};
+class MyCallbacks: public BLECharacteristicCallbacks {
+    void onWrite(BLECharacteristic *pCharacteristic) {
+      std::string value = pCharacteristic->getValue();
+
+      Serial.println(value[0]);
+      if(value[0] == *"s"){
+
+        start = false;
+      }
+      
+      if(value[0] == *"f"){
+
+        start = true; 
+      }
     }
 };
 
@@ -142,6 +160,7 @@ void setup() {
 
   // https://www.bluetooth.com/specifications/gatt/viewer?attributeXmlFile=org.bluetooth.descriptor.gatt.client_characteristic_configuration.xml
   // Create a BLE Descriptor
+  pCharacteristic->setCallbacks(new MyCallbacks());
   pCharacteristic->addDescriptor(new BLE2902());
 
   // Start the service
@@ -153,34 +172,41 @@ void setup() {
   pAdvertising->setScanResponse(false);
   pAdvertising->setMinPreferred(0x0);  // set value to 0x00 to not advertise this parameter
   BLEDevice::startAdvertising();
-  Serial.println("Waiting a client connection to notify...");
+  Serial.println("Waiting for a client connection to notify...");
 }
 
 void loop() {
     // notify changed value
     
     if (deviceConnected) {
-      
-        sensors_event_t event1;
-        sensors_event_t event2;
-        bno1.getEvent(&event1);  
-        imu::Quaternion quat1 = bno1.getQuat();
 
-        bno2.getEvent(&event2);
-        imu::Quaternion quat2 = bno2.getQuat();
+        if(start){
 
-        String result = ""; 
+          sensors_event_t event1;
+          sensors_event_t event2;
+          bno1.getEvent(&event1);  
+          imu::Quaternion quat1 = bno1.getQuat();
+  
+          bno2.getEvent(&event2);
+          imu::Quaternion quat2 = bno2.getQuat();
+  
+          String result = ""; 
+  
+          result = (String)quat1.w() + "," + (String)quat1.x() + "," + (String)quat1.y() + "," + (String)quat1.z() + "," + 
+             (String)quat2.w() + "," + (String)quat2.x() + "," + (String)quat2.y() + "," + (String)quat2.z() + ";" ;
+          Serial.println(result);
+          std::ostringstream os;
+          os << result.c_str();
+          
+          pCharacteristic->setValue(os.str());
+          pCharacteristic->notify();
+          value++;
+          delay(10); // bluetooth stack will go into congestion, if too many packets are sent, in 6 hours test i was able to go as low as 3ms
+        }
+        else{
 
-        result = (String)quat1.w() + "," + (String)quat1.x() + "," + (String)quat1.y() + "," + (String)quat1.z() + "," + 
-           (String)quat2.w() + "," + (String)quat2.x() + "," + (String)quat2.y() + "," + (String)quat2.z() + ";" ;
-        Serial.println(result);
-        std::ostringstream os;
-        os << result.c_str();
-        
-        pCharacteristic->setValue(os.str());
-        pCharacteristic->notify();
-        value++;
-        delay(10); // bluetooth stack will go into congestion, if too many packets are sent, in 6 hours test i was able to go as low as 3ms
+          delay(100);
+        }
         
     }
     // disconnecting
