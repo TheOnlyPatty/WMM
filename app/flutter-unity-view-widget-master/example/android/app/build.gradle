@@ -33,7 +33,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.example.flutterunitydemo"
+        applicationId "com.WMM.flutterunitydemo"
         minSdkVersion 25
         targetSdkVersion 30
         versionCode flutterVersionCode.toInteger()
@@ -52,17 +52,6 @@ android {
 flutter {
     source '../..'
 }
-
-
-
-
-
-
-
-
-
-
-
 
 dependencies {
     implementation project(':unityLibrary')
@@ -89,3 +78,5 @@ dependencies {
 
     implementation project(':unityLibrary')
 }
+
+apply plugin: 'com.google.gms.google-services'

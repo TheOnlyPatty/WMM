@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "504012142167",
+    "firebase_url": "https://wmmfirebase-default-rtdb.firebaseio.com",
+    "project_id": "wmmfirebase",
+    "storage_bucket": "wmmfirebase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:504012142167:android:c7c13c3a6ca51ff9261512",
+        "android_client_info": {
+          "package_name": "com.WMM.flutterunitydemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "504012142167-v3va8h1ebvfkhdfa3k1ud3elnjmh3vsm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRv0EteyfQIy1OMgGwi__NB1aFLU_-yO0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "504012142167-v3va8h1ebvfkhdfa3k1ud3elnjmh3vsm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
