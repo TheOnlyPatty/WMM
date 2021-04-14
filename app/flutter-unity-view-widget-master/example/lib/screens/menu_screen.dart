@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_unity_widget_example/services/auth.dart';
+import 'package:flutter_unity_widget_example/shared/nav_drawer.dart';
 import 'package:flutter_unity_widget_example/utils/screen_utils.dart';
-import 'dart:async';
 
 
 
@@ -12,6 +13,9 @@ class MenuScreen extends StatefulWidget {
 }
 
 class _MenuScreenState extends State<MenuScreen> {
+
+  AuthService _auth = AuthService();
+
   List<_MenuListItem> menus = [
 
     new _MenuListItem(
@@ -39,8 +43,21 @@ class _MenuScreenState extends State<MenuScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blue[50],
+      drawer: NavDrawer(),
       appBar: AppBar(
-        title: Text('Menu List'),
+        title: Text('WMM Companion'),
+        backgroundColor: Colors.blue[500],
+        elevation: 0.0,
+        actions: <Widget>[
+          FlatButton.icon(
+            icon: Icon(Icons.person),
+            label: Text('logout'),
+            onPressed: () async {
+              await _auth.signOut();
+            },
+          )
+        ]
       ),
       body: Center(
         child: ListView.builder(

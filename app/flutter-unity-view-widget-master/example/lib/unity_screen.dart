@@ -75,39 +75,39 @@ class UnityScreen extends StatelessWidget {
                 ),
               ),
             ),
-            Positioned(
-              top: 20,
-              left: 20,
-              right: 175,
-              child: Card(
-                elevation: 10,
-                child: Column(
-                  children: <Widget>[
-                    Text(
-                      "Pitch: \n" + "420",
-                      textAlign: TextAlign.center,
-                    )
-                  ],
-                ),
-              ),
-            ),
-            Positioned(
-              top: 20,
-              left: 175,
-              right: 20,
-              height: 40,
-              child: Card(
-                elevation: 10,
-                child: Column(
-                  children: <Widget>[
-                    Text(
-                      "Yaw: \n" + "1337",
-                      textAlign: TextAlign.center,
-                    )
-                  ],
-                ),
-              ),
-            ),
+            // Positioned(
+            //   top: 20,
+            //   left: 20,
+            //   right: 175,
+            //   child: Card(
+            //     elevation: 10,
+            //     child: Column(
+            //       children: <Widget>[
+            //         Text(
+            //           "Pitch: \n" + "420",
+            //           textAlign: TextAlign.center,
+            //         )
+            //       ],
+            //     ),
+            //   ),
+            // ),
+            // Positioned(
+            //   top: 20,
+            //   left: 175,
+            //   right: 20,
+            //   height: 40,
+            //   child: Card(
+            //     elevation: 10,
+            //     child: Column(
+            //       children: <Widget>[
+            //         Text(
+            //           "Yaw: \n" + "1337",
+            //           textAlign: TextAlign.center,
+            //         )
+            //       ],
+            //     ),
+            //   ),
+            // ),
           ],
         ),
       ),
