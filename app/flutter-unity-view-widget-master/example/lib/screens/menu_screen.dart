@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_unity_widget_example/models/athlete.dart';
 import 'package:flutter_unity_widget_example/services/auth.dart';
 import 'package:flutter_unity_widget_example/shared/nav_drawer.dart';
 import 'package:flutter_unity_widget_example/utils/screen_utils.dart';
-
-
+import 'package:provider/provider.dart';
 
 class MenuScreen extends StatefulWidget {
   MenuScreen({Key key}) : super(key: key);
@@ -14,16 +14,9 @@ class MenuScreen extends StatefulWidget {
 
 class _MenuScreenState extends State<MenuScreen> {
 
-  AuthService _auth = AuthService();
+  final AuthService _auth = AuthService();
 
   List<_MenuListItem> menus = [
-
-    new _MenuListItem(
-      description: 'Set up Bluetooth',
-      route: '/ble',
-      title: 'Bluetooth Setup',
-      enableAR: false,
-    ),
 
     new _MenuListItem(
       description: 'Database',
@@ -42,17 +35,19 @@ class _MenuScreenState extends State<MenuScreen> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
-      backgroundColor: Colors.blue[50],
+      backgroundColor: Color(0xff5d73a5),
       drawer: NavDrawer(),
       appBar: AppBar(
         title: Text('WMM Companion'),
-        backgroundColor: Colors.blue[500],
+        backgroundColor: Color(0xff0c1423),
         elevation: 0.0,
         actions: <Widget>[
           FlatButton.icon(
             icon: Icon(Icons.person),
             label: Text('logout'),
+            textColor: Colors.white,
             onPressed: () async {
               await _auth.signOut();
             },
@@ -64,8 +59,8 @@ class _MenuScreenState extends State<MenuScreen> {
           itemCount: menus.length,
           itemBuilder: (BuildContext context, int i) {
             return ListTile(
-              title: Text(menus[i].title),
-              subtitle: Text(menus[i].description),
+              title: Text(menus[i].title, style: TextStyle(color: Colors.white)),
+              subtitle: Text(menus[i].description, style: TextStyle(color: Colors.white)),
               onTap: () {
                 Navigator.of(context).pushNamed(
                   menus[i].route,

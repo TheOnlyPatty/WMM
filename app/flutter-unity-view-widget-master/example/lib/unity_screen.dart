@@ -27,9 +27,10 @@ class UnityScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xff5d73a5),
       appBar: AppBar(
         title: Text('Past Data 3D Model'),
-
+        backgroundColor: Color(0xff0c1423),
       ),
       body: Card(
         margin: const EdgeInsets.all(8),
@@ -69,7 +70,7 @@ class UnityScreen extends StatelessWidget {
                         }
 
                       },
-                      child: const Text('Press to start demo!', style: TextStyle(fontSize: 20)),
+                      child: const Text('Start Replay', style: TextStyle(color: Color(0xff242a38), fontSize: 20)),
                     ),
                   ],
                 ),

@@ -26,15 +26,20 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return loading ? Loading() : Scaffold(
-      backgroundColor: Colors.blue[100],
+      backgroundColor: Color(0xff5d73a5),
       appBar: AppBar(
-        backgroundColor: Colors.blue[500],
+        leading: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Image.asset("assets/images/WMM_line.png"),
+        ), 
+        backgroundColor: Color(0xff0c1423),
         elevation: 0.0,
-        title: Text('Sign up for WMM Companion'),
+        title: Text('Wrist Motion Monitor'),
         actions: <Widget>[
           FlatButton.icon(
             icon: Icon(Icons.person),
             label: Text('Sign in'),
+            textColor: Colors.white,
             onPressed: () {
               widget.toggleView();
             },
@@ -66,7 +71,7 @@ class _RegisterState extends State<Register> {
               ),
               SizedBox(height: 20.0),
               RaisedButton(
-                color: Colors.yellow[800],
+                color: Color(0xff242a38),
                 child: Text(
                   'Register',
                   style: TextStyle(color: Colors.white),

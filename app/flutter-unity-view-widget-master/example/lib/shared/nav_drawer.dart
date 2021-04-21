@@ -10,35 +10,44 @@ class NavDrawer extends StatelessWidget {
         children: <Widget>[
           DrawerHeader(
             child: Text(
-              'Side menu',
+              '',
               style: TextStyle(color: Colors.white, fontSize: 25),
             ),
             decoration: BoxDecoration(
-              color: Colors.blue,
+              color: Color(0xff0c1423),
+              image: DecorationImage(
+                alignment: Alignment.center,
+                fit: BoxFit.scaleDown,
+                image: AssetImage('assets/images/WMM_whiteLogo.png')
+              ),
             ),
           ),
           ListTile(
-            leading: Icon(Icons.input),
-            title: Text('Welcome'),
-            onTap: () => {},
+            leading: Icon(Icons.input, color: Color(0xff0c1423)),
+            title: Text('Home'),
+            onTap: () => {Navigator.of(context).pop()},
           ),
           ListTile(
-            leading: Icon(Icons.bluetooth),
+            leading: Icon(Icons.bluetooth, color: Color(0xff0c1423)),
             title: Text('Bluetooth Setup'),
             onTap: () => {
               Navigator.of(context).pushNamed('/ble', arguments: ScreenArguments(enableAR: false),)
             },
           ),
-          // ListTile(
-          //   leading: Icon(Icons.settings),
-          //   title: Text('Settings'),
-          //   onTap: () => {Navigator.of(context).pop()},
-          // ),
-          // ListTile(
-          //   leading: Icon(Icons.border_color),
-          //   title: Text('Feedback'),
-          //   onTap: () => {Navigator.of(context).pop()},
-          // ),
+          ListTile(
+            leading: Icon(Icons.account_circle, color: Color(0xff0c1423)),
+            title: Text('Profile'),
+            onTap: () => {
+              Navigator.of(context).pushNamed('/al', arguments: ScreenArguments(enableAR: false),)
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.play_arrow, color: Color(0xff0c1423) ),
+            title: Text('Record new data'),
+            onTap: () => {
+              Navigator.of(context).pushNamed('/ble', arguments: ScreenArguments(enableAR: false),)
+            },
+          ),
           // ListTile(
           //   leading: Icon(Icons.exit_to_app),
           //   title: Text('Logout'),

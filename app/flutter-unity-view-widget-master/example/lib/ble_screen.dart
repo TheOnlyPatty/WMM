@@ -75,7 +75,9 @@ class FindDevicesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xff5d73a5),
       appBar: AppBar(
+        backgroundColor: Color(0xff0c1423),
         title: Text('Find Devices'),
       ),
       body: RefreshIndicator(
@@ -144,11 +146,12 @@ class FindDevicesScreen extends StatelessWidget {
             return FloatingActionButton(
               child: Icon(Icons.stop),
               onPressed: () => FlutterBlue.instance.stopScan(),
-              backgroundColor: Colors.red,
+              backgroundColor: Colors.red[900],
             );
           } else {
             return FloatingActionButton(
                 child: Icon(Icons.search),
+                backgroundColor: Color(0xff242a38),
                 onPressed: () => FlutterBlue.instance
                     .startScan(timeout: Duration(seconds: 4)));
           }
@@ -216,8 +219,9 @@ class DeviceScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xff5d73a5),
       appBar: AppBar(
-
+        backgroundColor: Color(0xff0c1423),
         title: Text(device.name),
         actions: <Widget>[
           StreamBuilder<BluetoothDeviceState>(
@@ -347,13 +351,14 @@ class LoaderScreen extends StatelessWidget {
 
 
 
-
+  // wrap scaffold in streambuilder to be able to update database values
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold(           
+      backgroundColor: Color(0xff5d73a5),
       appBar: AppBar(
         title: Text('Live 3D Model'),
-
+        backgroundColor: Color(0xff0c1423),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -409,7 +414,7 @@ class LoaderScreen extends StatelessWidget {
                           }
                         });
                       },
-                      child: const Text('Press to start demo!', style: TextStyle(fontSize: 20)),
+                      child: const Text('Press to start demo!', style: TextStyle(color: Color(0xff242a38),fontSize: 20)),
                     ),
 
 
