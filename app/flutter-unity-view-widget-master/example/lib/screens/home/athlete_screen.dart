@@ -17,7 +17,7 @@ class _AthleteListState extends State<AthleteList> {
   @override
   Widget build(BuildContext context) {
 
-    final athletes = Provider.of<List<Athlete>>(context);
+    final athletes = Provider.of<Athlete>(context);
 
     // function for showing a pop up settings panel
     void _showSettingsPanel() {
@@ -46,9 +46,9 @@ class _AthleteListState extends State<AthleteList> {
       ),
       body: Center(
         child: ListView.builder(
-          itemCount: athletes.length,
+          itemCount: 1,
           itemBuilder: (context, index) {
-            return AthleteTile(athlete: athletes[index]);
+            return AthleteTile(athlete: athletes);
           },
         ),
       ),

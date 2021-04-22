@@ -19,11 +19,9 @@ class DatabaseService {
   }
 
   // test function
-  Future addNewAthlete(String name, String age, String sport) async {
+  Future addNewAthlete(List playersList) async {
     //return await coachCollection.document(uid).collection('athletes').document(name).setData({
-    return await athleteCollection.document(uid).updateData({
-      'players': [{'name': name, 'age': age, 'sport': sport}],
-    });
+    return await athleteCollection.document(uid).updateData({'players' : FieldValue.arrayUnion(playersList)});
   }
 
   // add new entry with user defined key values (just need to make the value an array of strings)
@@ -33,15 +31,26 @@ class DatabaseService {
     });
   }
 
+  // // athlete list from snapshot
+  // List<Athlete> _athleteListFromSnapshot(QuerySnapshot snapshot) {
+  //   return snapshot.documents.map((doc){
+  //     return Athlete(
+  //       name: doc.data['name'] ?? '',
+  //       sport: doc.data['sport'] ?? '',
+  //       age: doc.data['age'] ?? '',
+  //       players: doc.data['players'] ?? '',
+  //     );
+  //   }).toList();
+  // }
+
   // athlete list from snapshot
-  List<Athlete> _athleteListFromSnapshot(QuerySnapshot snapshot) {
-    return snapshot.documents.map((doc){
-      return Athlete(
-        name: doc.data['name'] ?? '',
-        sport: doc.data['sport'] ?? '',
-        age: doc.data['age'] ?? '',
-      );
-    }).toList();
+  Athlete _athleteListFromSnapshot(DocumentSnapshot snapshot) {
+    return Athlete(
+      name: snapshot.data['name'] ?? '',
+      sport: snapshot.data['sport'] ?? '',
+      age: snapshot.data['age'] ?? '',
+      players: snapshot.data['players'] ?? '',
+    );
   }
 
   // user data from snapshot
@@ -54,8 +63,8 @@ class DatabaseService {
   }
 
   // get database stream
-  Stream<List<Athlete>> get athletes {
-    return athleteCollection.snapshots().map(_athleteListFromSnapshot);
+  Stream<Athlete> get athletes {
+    return athleteCollection.document(uid).snapshots().map(_athleteListFromSnapshot);
   }
 
   // get user doc stream
@@ -64,3 +73,5 @@ class DatabaseService {
   }
 
 }
+
+
