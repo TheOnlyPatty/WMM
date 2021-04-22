@@ -19,12 +19,10 @@ class DatabaseService {
   }
 
   // test function
-  Future addNewAthlete(String name, String sport) async {
+  Future addNewAthlete(String name, String age, String sport) async {
     //return await coachCollection.document(uid).collection('athletes').document(name).setData({
     return await athleteCollection.document(uid).updateData({
-      'name' : name,
-      'sport': sport,
-      //'age': age,
+      'players': [{'name': name, 'age': age, 'sport': sport}],
     });
   }
 
@@ -41,7 +39,7 @@ class DatabaseService {
       return Athlete(
         name: doc.data['name'] ?? '',
         sport: doc.data['sport'] ?? '',
-        //age: doc.data['age'] ?? '',
+        age: doc.data['age'] ?? '',
       );
     }).toList();
   }
@@ -58,7 +56,6 @@ class DatabaseService {
   // get database stream
   Stream<List<Athlete>> get athletes {
     return athleteCollection.snapshots().map(_athleteListFromSnapshot);
-    //return coachCollection.document(uid).collection('trainers').snapshots().map(_athleteListFromSnapshot);
   }
 
   // get user doc stream

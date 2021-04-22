@@ -55,13 +55,13 @@ class _SettingsFormState extends State<SettingsForm> {
                   validator: (val) => val.isEmpty ? 'Please enter a sport' : null,
                   onChanged: (val) => setState(() => _currentSport = val),
                 ),
-                //SizedBox(height: 20.0),
-                // TextFormField(
-                //   //initialValue: userData.sport,
-                //   decoration: textInputDecoration.copyWith(hintText: 'Age'),
-                //   validator: (val) => val.isEmpty ? 'Please enter an age' : null,
-                //   onChanged: (val) => setState(() => _currentAge = val),
-                // ),
+                SizedBox(height: 20.0),
+                TextFormField(
+                  //initialValue: userData.sport,
+                  decoration: textInputDecoration.copyWith(hintText: 'Age'),
+                  validator: (val) => val.isEmpty ? 'Please enter an age' : null,
+                  onChanged: (val) => setState(() => _currentAge = val),
+                ),
                 // drop down
                 // slider
                 RaisedButton(
@@ -75,6 +75,7 @@ class _SettingsFormState extends State<SettingsForm> {
                       await DatabaseService(uid: user.uid).addNewAthlete(
                         _currentName,
                         _currentSport,
+                        _currentAge,
                       );
                       Navigator.pop(context);
                     }
