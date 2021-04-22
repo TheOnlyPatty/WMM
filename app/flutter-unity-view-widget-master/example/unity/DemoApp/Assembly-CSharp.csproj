@@ -55,6 +55,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\FlutterUnityIntegration\Demo\CameraRotator.cs" />
      <Compile Include="Assets\FlutterUnityIntegration\Demo\GameManager.cs" />
      <Compile Include="Assets\FlutterUnityIntegration\Demo\Rotate.cs" />
      <Compile Include="Assets\FlutterUnityIntegration\Demo\SceneLoader.cs" />

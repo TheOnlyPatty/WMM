@@ -22,20 +22,31 @@ public class Rotate : MonoBehaviour, IEventSystemHandler
 
     public h other;
 
+    public CameraRotator cr;
+
     [SerializeField]
     Quaternion quat;
 
     void Start()
     {
         transform.rotation = Quaternion.FromToRotation(Vector3.up, transform.forward);
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        //transform.rotation = quat;
-    }
+        for (int i = 0; i < Input.touchCount; ++i)
+        {
+            if (Input.GetTouch(i).phase == TouchPhase.Began)
+            {
+                cr.rotateCamera();
+            }
+        }
 
+            
+    }
     private static Quaternion Change(float w, float x, float y, float z)
     {
         Quaternion newQuat = new Quaternion();
@@ -67,4 +78,6 @@ public class Rotate : MonoBehaviour, IEventSystemHandler
             throw;
         }
     }
+
+   
 }
