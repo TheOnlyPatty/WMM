@@ -409,8 +409,9 @@ class LoaderScreen extends StatelessWidget {
                             DatabaseHelper.columnName : '$dbVar'
                           });
                           if(record == false){
-                            c.write([0x73]);
-
+                            //c.write([0x73]);
+                            device.disconnect();
+                            Navigator.of(context).pop();
                           }
                         });
                       },
