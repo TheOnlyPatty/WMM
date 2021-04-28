@@ -8,6 +8,9 @@ import 'dart:math';
 import 'package:flutter_unity_widget/flutter_unity_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_blue/flutter_blue.dart';
+import 'package:flutter_unity_widget_example/models/user.dart';
+import 'package:flutter_unity_widget_example/services/database.dart';
+import 'package:provider/provider.dart';
 import 'widgets.dart';
 import 'screens/menu_screen.dart';
 import 'package:flutter_unity_widget_example/database_helper.dart';
@@ -354,11 +357,22 @@ class LoaderScreen extends StatelessWidget {
   // wrap scaffold in streambuilder to be able to update database values
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(           
       backgroundColor: Color(0xff5d73a5),
       appBar: AppBar(
         title: Text('Live 3D Model'),
         backgroundColor: Color(0xff0c1423),
+        actions: <Widget>[
+          FlatButton.icon(
+            icon: Icon(Icons.autorenew),
+            label: Text('New'),
+            textColor: Colors.white,
+            onPressed: () async {
+              await DatabaseHelper.instance.delete();
+            },
+          )
+        ]
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -401,7 +415,7 @@ class LoaderScreen extends StatelessWidget {
                         if(record){await c.write([0x66]);}
                         String dbVar;
                         await c.setNotifyValue(true);
-                        c.value.listen((value) {
+                        c.value.listen((value) async {
                           print(String.fromCharCodes(value));
                           setOrientation(String.fromCharCodes(value));
                           dbVar = String.fromCharCodes(value);
@@ -410,8 +424,7 @@ class LoaderScreen extends StatelessWidget {
                           });
                           if(record == false){
                             //c.write([0x73]);
-                            device.disconnect();
-                            Navigator.of(context).pop();
+                            
                           }
                         });
                       },

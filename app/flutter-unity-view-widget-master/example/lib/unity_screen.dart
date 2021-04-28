@@ -65,7 +65,7 @@ class UnityScreen extends StatelessWidget {
                           queryRows = await DatabaseHelper.instance.queryAll(i);
                           value = queryRows[0]['quaterion'];
                           print(i);
-                          await Future.delayed(const Duration(milliseconds: 30));
+                          await Future.delayed(const Duration(milliseconds: 40));
                           setOrientation(value);
                         }
 

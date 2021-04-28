@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_unity_widget_example/models/athlete.dart';
+import 'package:flutter_unity_widget_example/models/players.dart';
 import 'package:flutter_unity_widget_example/models/user.dart';
 import 'package:flutter_unity_widget_example/screens/home/athlete_tile.dart';
 import 'package:flutter_unity_widget_example/screens/home/settings_form.dart';
@@ -18,6 +19,8 @@ class _AthleteListState extends State<AthleteList> {
   Widget build(BuildContext context) {
 
     final athletes = Provider.of<Athlete>(context);
+    List playersList = athletes.players;
+    Players player;
 
     // function for showing a pop up settings panel
     void _showSettingsPanel() {
@@ -46,9 +49,10 @@ class _AthleteListState extends State<AthleteList> {
       ),
       body: Center(
         child: ListView.builder(
-          itemCount: 1,
+          itemCount: playersList.length,
           itemBuilder: (context, index) {
-            return AthleteTile(athlete: athletes);
+            player = Players(name: playersList[index]['name'], sport: playersList[index]['sport'], age: playersList[index]['age'],);
+            return AthleteTile(player: player);
           },
         ),
       ),

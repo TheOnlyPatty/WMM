@@ -24,13 +24,6 @@ class _SettingsFormState extends State<SettingsForm> {
   Widget build(BuildContext context) {
 
     final user = Provider.of<User>(context);
-    final athletes = Provider.of<Athlete>(context);
-    int i = 0;
-
-    for (var player in athletes.players) {
-      print(athletes.players[i]);
-      i++;
-    }
 
     // return StreamBuilder<UserData>(
     //   stream: DatabaseService(uid: user.uid).userData,

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_unity_widget_example/models/athlete.dart';
+import 'package:flutter_unity_widget_example/models/players.dart';
 
 class AthleteTile extends StatelessWidget {
 
-  final Athlete athlete;
-  AthleteTile({ this.athlete });
+  final Players player;
+  AthleteTile({ this.player });
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +18,8 @@ class AthleteTile extends StatelessWidget {
             size: 50.0,
             color: Color(0xff0c1423),
           ),
-          title: Text(athlete.name),
-          subtitle: Text(athlete.sport), 
+          title: Text(player.name),
+          subtitle: Text(player.age + ', ' + player.sport),
         ),
       )
     );

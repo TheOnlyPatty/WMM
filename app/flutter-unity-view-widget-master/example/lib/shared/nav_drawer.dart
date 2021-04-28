@@ -36,25 +36,25 @@ class NavDrawer extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(Icons.account_circle, color: Color(0xff0c1423)),
-            title: Text('Profile'),
+            title: Text('Players'),
             onTap: () => {
               Navigator.of(context).pushNamed('/al', arguments: ScreenArguments(enableAR: false),)
             },
           ),
           ListTile(
             leading: Icon(Icons.play_arrow, color: Color(0xff0c1423) ),
-            title: Text('Record new data'),
+            title: Text('Record New Data'),
             onTap: () => {
               Navigator.of(context).pushNamed('/ble', arguments: ScreenArguments(enableAR: false),)
             },
           ),
-          // ListTile(
-          //   leading: Icon(Icons.exit_to_app),
-          //   title: Text('Logout'),
-          //   onTap: () => {
-              
-          //   },
-          // ),
+          ListTile(
+            leading: Icon(Icons.camera_front, color: Color(0xff0c1423)),
+            title: Text('View Previous Records'),
+            onTap: () => {
+              Navigator.of(context).pushNamed('/un', arguments: ScreenArguments(enableAR: false),)
+            },
+          ),
         ],
       ),
     );

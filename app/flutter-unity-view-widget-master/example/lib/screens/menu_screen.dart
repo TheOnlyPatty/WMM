@@ -16,23 +16,6 @@ class _MenuScreenState extends State<MenuScreen> {
 
   final AuthService _auth = AuthService();
 
-  List<_MenuListItem> menus = [
-
-    new _MenuListItem(
-      description: 'Database',
-      route: '/db',
-      title: 'Database',
-      enableAR: false,
-    ),
-
-    new _MenuListItem(
-      description: 'Unity 3D Model of Past Data',
-      route: '/un',
-      title: '3D Model',
-      enableAR: false,
-    )
-  ];
-
   @override
   Widget build(BuildContext context) {
 
@@ -54,22 +37,14 @@ class _MenuScreenState extends State<MenuScreen> {
           )
         ]
       ),
-      body: Center(
-        child: ListView.builder(
-          itemCount: menus.length,
-          itemBuilder: (BuildContext context, int i) {
-            return ListTile(
-              title: Text(menus[i].title, style: TextStyle(color: Colors.white)),
-              subtitle: Text(menus[i].description, style: TextStyle(color: Colors.white)),
-              onTap: () {
-                Navigator.of(context).pushNamed(
-                  menus[i].route,
-                  arguments: ScreenArguments(enableAR: menus[i].enableAR),
-                );
-              },
-            );
-          },
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/images/tennis_stock.jpg"),
+            fit: BoxFit.cover,
+          ),
         ),
+        child: Center(child: FlutterLogo(size: 250, colors: Colors.yellow)),
       ),
     );
   }

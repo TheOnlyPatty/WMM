@@ -54,6 +54,7 @@ flutter:
   - assets/images/WMM_logo.png
   - assets/images/WMM_line.png
   - assets/images/WMM_whiteLogo.png
+  - assets/images/tennis_stock.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

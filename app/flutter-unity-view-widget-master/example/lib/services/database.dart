@@ -11,10 +11,10 @@ class DatabaseService {
   final CollectionReference athleteCollection = Firestore.instance.collection('athletes');
   final CollectionReference coachCollection = Firestore.instance.collection('trainers');
 
-  Future updateUserData(String sport, String name) async {
+  Future updateUserData(String name) async {
     return await athleteCollection.document(uid).setData({
-      'sport': 'Golf',
-      'name': 'Phil',
+      'name': name,
+      'players' : FieldValue.arrayUnion([]),
     });
   }
 
@@ -25,9 +25,9 @@ class DatabaseService {
   }
 
   // add new entry with user defined key values (just need to make the value an array of strings)
-  Future addNewEntry(String key, String value) async {
+  Future addNewData(String key, List dataList) async {
     return await athleteCollection.document(uid).updateData({
-      key : value,
+      key : FieldValue.arrayUnion(dataList),
     });
   }
 
@@ -47,8 +47,6 @@ class DatabaseService {
   Athlete _athleteListFromSnapshot(DocumentSnapshot snapshot) {
     return Athlete(
       name: snapshot.data['name'] ?? '',
-      sport: snapshot.data['sport'] ?? '',
-      age: snapshot.data['age'] ?? '',
       players: snapshot.data['players'] ?? '',
     );
   }
