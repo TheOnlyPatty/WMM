@@ -11,5 +11,6 @@ public class CameraRotator : MonoBehaviour
     public void rotateCamera()
     {
         transform.rotation = target.rotation;
+        transform.Rotate(180, 0, 0);
     }
 }
